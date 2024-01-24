@@ -95,7 +95,8 @@ public:
     value(const Point<dim> & p,
           const unsigned int /*component*/ = 0) const override
     {
-      return 1.0*(p[0]+p[1]);
+      double x = std::sqrt(p[0]*p[0]+p[1]*p[1]+p[2]*p[2]);
+      return (x*x)/(x*x+1);
     }
   };
     //  FullMatrix<double> cell_matrix(dofs_per_cell, dofs_per_cell);
@@ -137,7 +138,7 @@ public:
        for (unsigned int i = 0; i < dim; ++i){
         for (unsigned int j = 0; j < dim; ++j){
           if(i==j)
-            values[i][j] = 2.0;
+            values[i][j] = 1.0;
           else
             values[i][j] = 0.0;
         }
